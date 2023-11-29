@@ -15,22 +15,20 @@ const cliente = new Cliente(
 );
 
 const cliente1 = new Cliente(
-	'Tozé',
-	'Mandela',
+	'biladas',
+	'Lopes',
 	'1999-08-01',
-	'0033445566LN045',
+	'0089445576LN045',
 	'Angolana',
 	'gamek',
 	'2000-05-10',
 	'2000-05-10',
-	'mandelajunior10@gmail.com',
-	[{'+244':'937537126'},{'+244':'937537126'}]
+	'biladasl@gmail.com',
+	[{'+244':'937580180'},{'+244':'937537126'}]
 );
 
-const conta = new Conta(cliente);
-const conta1 = new Conta(cliente1);
+const conta = new Conta(cliente, true);
+const conta1 = new Conta(cliente1, true, 'conta corrente');
 
 conta.leitura();
-
-console.log(conta.tutular);
-
+conta1.leitura();
