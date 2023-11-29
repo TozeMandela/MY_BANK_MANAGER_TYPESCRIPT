@@ -32,3 +32,16 @@ const conta1 = new Conta(cliente1, true, 'conta corrente');
 
 conta.leitura();
 conta1.leitura();
+
+conta.depositar(20000);
+conta1.depositar(60000);
+
+conta.leitura();
+conta1.leitura();
+
+conta1.transferir(15000, conta);
+
+conta.leitura();
+conta1.leitura();
+
+console.log('\n\n',conta1.consultaSaldo());

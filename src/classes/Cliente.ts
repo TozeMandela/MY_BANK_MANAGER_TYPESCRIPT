@@ -13,6 +13,7 @@ export class Cliente extends Person {
 		_bi_date_expiration: string,
 		_email: string,
 		_phoneNumber: Record<string, string>[]) {
+            
 		super(
 			_name.toUpperCase(),
 			_last_name.toUpperCase(),

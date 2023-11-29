@@ -1,16 +1,12 @@
 import { IPropsConta, ImovimentAccount, InumberAccount } from './interfaces/IConta';
 import { IPerson } from './interfaces/IPessoa';
-import { services } from '../services/server';
 
 
 export class Conta implements IPropsConta{
 	private readonly titular: IPerson;
-	private readonly amountExist: number;
+	private amountExist: number;
 	private readonly history: ImovimentAccount;
 	private readonly number_accont: InumberAccount[];
-	// private readonly passwConfirm: string;
-	// private readonly password: string;
-
 
 
 	constructor(cliente: IPerson, newClient: true, accountType: string = 'CONTA POPANÇA'){
@@ -33,7 +29,6 @@ export class Conta implements IPropsConta{
 			const increment = Math.floor(Math.random()*10);
 			str = `${str}${increment}`;
 		}
-
 		return `${str}`;
 	}
 
@@ -49,24 +44,38 @@ export class Conta implements IPropsConta{
 	}
 
 	leitura () {
-
-		console.log('--------------------------------------------------------------\n\n',this.titular, '\nConta: \n\n', this.number_accont);
+		console.log('--------------------------------------------------------------\n\n',this.titular, '\nConta: \n\n', this.number_accont, '\nsaldo: ',this.amountExist, 'KZ');
 	}
 
 	emitStratus(): void {
 
 	}
 
-	sacar(amount: number): number {
-
+	consultaSaldo(){
+		return this.amountExist;
 	}
 
-	transferir(amount: number, numberOtherAccount: string): true {
+	sacar(amount: number): number | string {
+		const aux = this.amountExist;
+		this.amountExist =  this.amountExist > amount ? this.amountExist - amount : this.amountExist;
+		if(aux === this.amountExist) return 'saldo inferior';
 
+		return this.amountExist;
+	}
+
+	transferir(amount: number, numberOtherAccount: IPropsConta): boolean {
+		if(this.consultaSaldo()<amount) return false;
+
+		const rest = this.sacar(amount);
+        
+		if(typeof(rest) !== 'number') return false;
+		numberOtherAccount.depositar(amount);
+
+		return true;
 	}
 
 	depositar(amount: number): number {
-
+		return this.amountExist += amount;
 	}
 
 	get tutular () {
