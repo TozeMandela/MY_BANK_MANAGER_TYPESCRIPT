@@ -1,12 +1,8 @@
 import { Person } from './abstract/Pessoa';
 
 
-export class Conta extends Person {
-	private titular: Person;
-    private number_accont: string[];
+export class Cliente extends Person {
 
-
-    
 	constructor(_name: string,
 		_last_name: string,
 		_birth_date: string,
@@ -28,10 +24,23 @@ export class Conta extends Person {
 			new Date(_bi_date_expiration).toLocaleDateString('pt-Pt'),
 			_email, _phoneNumber
 		);
+
 	}
 
-	leitura() {
-		console.log(this.name, this.last_name.toUpperCase(), this.birth_date, this.bi_number.toUpperCase(), this.nacionality.toUpperCase(), this.current_house.toUpperCase(), this.bi_valid_date, this.bi_date_expiration, this.email, this.phoneNumber);
+	leitura(): void {
+		console.log({
+			name: this.name,
+			last_name: this.last_name.toUpperCase(),
+			birth_date: this.birth_date,
+			bi_number: this.bi_number.toUpperCase(),
+			nacionality: this.nacionality.toUpperCase(),
+			current_house: this.current_house.toUpperCase(),
+			bi_valid_date: this.bi_valid_date,
+			bi_date_expiration: this.bi_date_expiration,
+			email: this.email,
+			phoneNumber: this.phoneNumber
+		});
 	}
+
 }
 
